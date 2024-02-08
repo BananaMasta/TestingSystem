@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Spring Boot Thymeleaf Application - Bootstrap Table</title>
+    <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10 mt-5 mb-5">
+            <table id="teacherlist" class="table table-bordered" style="width: 100%">
+                <tr th:each="teacher:${teacherList}">
+                    <td th:text="${teacher.name}"></td>
+                    <td th:text="${teacher.studySubject}"></td>
+                    <td>
+                        <form th:action="@{/teacherupdate/} + ${{teacher.id}}" method="get">
+                            <button type="submit">Update teacher</button>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

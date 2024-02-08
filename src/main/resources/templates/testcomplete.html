@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+    .red{color: red}
+    .row {
+        margin-left: -5px;
+        margin-right: -5px;
+    }
+
+    .column {
+        float: left;
+        width: auto;
+        padding: 5px;
+    }
+
+    .row::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+        border: 1px solid #ddd;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 16px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
+<body>
+<form th:action="@{/testcomplete/} + ${{testId}}" method="post">
+    <button th:id="'table_entry_childs_button_' + ${testId}" type="submit">Result</button>
+    <table>
+        <tr th:each="question:${questionList}">
+            <td>
+                <input type="hidden" name="questionId" th:value="${question.id}">
+            </td>
+        </tr>
+        <tr th:each="studentAnswers:${studentAnswersList}">
+            <td>
+                <input type="hidden" name="studentAnswersId" th:value="${studentAnswers.id}">
+            </td>
+        </tr>
+    </table>
+    <div class="column">
+        <table>
+            <tr th:each="question:${questionList1}">
+                <td th:text="${question.questName}">
+            </tr>
+        </table>
+    </div>
+    <div class="column">
+        <table>
+            <tr th:each="answer:${trueOrFalse}">
+                <td th:text="${answer}?'true':'false'"></td>
+            </tr>
+        </table>
+    </div>
+    Балл за тест
+    <label th:text="${finalscore}"></label>
+    <label th:text="${pass}"></label>
+</form>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Spring Boot Thymeleaf Application - Bootstrap Table</title>
+    <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10 mt-5 mb-5">
+            <table id="questions1" class="table table-bordered" style="width: 100%">
+                <tr th:each="question:${questionsInTest}">
+                    <td th:text="${question.questName}"></td>
+                    <td th:text="${question.answerVariants}"></td>
+                    <td th:text="${question.answers}"></td>
+                    <td th:text="${question.questionDifficult}"></td>
+                    <td>
+                        <form th:action="@{/updatequestion/} + ${{question.id}}" method="get">
+                            <button th:id="'table_entry_childs_button_' + ${question.id}" type="submit">Update
+                                question
+                            </button>
+                        </form>
+                    </td>
+                    <td>
+                        <form th:action="@{/testpage/} + ${{testid}}" method="post">
+                            <input type="hidden" name="questId" th:value="${question.id}"/>
+                            <button th:id="'table_entry_childs_button_' + ${testid}" type="submit">Delete
+                                question
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10 mt-5 mb-5">
+            <table id="questions2" class="table table-bordered" style="width: 100%">
+                <tr th:each="question:${questions}">
+                    <td th:value="${question.id}" type="hidden"></td>
+                    <td th:text="${question.questName}"></td>
+                    <td th:text="${question.answerVariants}"></td>
+                    <td th:text="${question.answers}"></td>
+                    <td th:text="${question.studySubject.name}"></td>
+                    <td>
+                        <form th:action="@{/addingquestiontotest/} + ${{question.id}}" method="post">
+                            <input name="testId" th:value="${testid}" type="hidden"/>
+                            <button th:id="'table_entry_childs_button_' + ${question.id}" type="submit">Add to test
+                            </button>
+                        </form>
+                    </td>
+                    <td>
+                        <form th:action="@{/updatequestion/} + ${{question.id}}" method="get">
+                            <button th:id="'table_entry_childs_button_' + ${question.id}" type="submit">Update
+                                question
+                            </button>
+                        </form>
+                    </td>
+            </table>
+            </tr>
+        </div>
+    </div>
+</div>
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+</body>
+</html>

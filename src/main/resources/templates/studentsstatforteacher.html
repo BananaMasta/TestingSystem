@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Spring Boot Thymeleaf Application - Bootstrap Table</title>
+    <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+<form th:action="@{/studentsstatistic/} + ${{testId}}" method="post">
+<select name="sortedBy">
+    <option>A-Z</option>
+    <option>Z-A</option>
+    <option>0-100</option>
+    <option>100-0</option>
+</select>
+    <button type="submit">Sort</button>
+</form>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10 mt-5 mb-5">
+            <table id="questions" class="table table-bordered" style="width: 100%">
+                <tr>
+                    <th>Имя студента</th>
+                    <th>Предмет</th>
+                    <th>Балл</th>
+                    <th>Сдал/Не Сдал</th>
+                </tr>
+                <tr th:each="stat:${statistics}">
+                    <td th:text="${stat.user.name}"></td>
+                    <td th:text="${stat.test.studySubjectList.name}"></td>
+                    <td th:text="${stat.userTestScore}"></td>
+                    <td th:text="${stat.testStatus}"
+                        th:style="${stat.testStatus} == 'Passed' ? 'background: green' : 'background: red'"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

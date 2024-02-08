@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Spring Boot Thymeleaf Application - Bootstrap Table</title>
+    <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+
+<h2>Create test</h2>
+<form th:action="@{/testcreate}" method="post">
+    <input type="text" name="testName"/>
+    <select name="subject">
+        <option>Choose subject</option>
+        <option th:each="sub:${subject}" th:text="${sub.name}"></option>
+    </select>
+    <button type="submit">
+        <i>Save test</i>
+    </button>
+</form>
+
+<h2>Create Subject</h2>
+<form th:action="@{/studsubjectcreate}" method="POST">
+    <input type="text" name="subjectName"/>
+    <button type="submit">Add subject</button>
+</form>
+
+<h2>Create Question</h2>
+<form th:action="@{/questionscreate}" method="post">
+    <p type="text" th:value="Error">
+    <h1>Question create</h1>
+    <div class="question">
+        <input type="text" name="questName" required/>
+        <label>Question Name</label>
+    </div>
+    <div class="question">
+        <input type="checkbox" name="radio1"/>
+        <input type="text" name="answerVar1" required/>
+        <label>Answer 1</label>
+    </div>
+    <div class="question">
+        <input type="checkbox" name="radio2"/>
+        <input type="text" name="answerVar2" required/>
+        <label>Answer 2</label>
+    </div>
+    <div class="question">
+        <input type="checkbox" name="radio3"/>
+        <input type="text" name="answerVar3" required/>
+        <label>Answer 3</label>
+    </div>
+    <div class="question">
+        <input type="checkbox" name="radio4"/>
+        <input type="text" name="answerVar4" required/>
+        <label>Answer 4</label>
+    </div>
+    <label>
+        <select name="subject">
+            <option>Choose subject</option>
+            <option th:each="sub:${subject}" th:text="${sub.name}"></option>
+        </select>
+    </label>
+    <label>
+        <td>
+            <select name="questionDifficulty">
+                <option th:each="dif : ${T(com.example.testingsystem.users.QuestionDifficult).values()}"
+                        th:value="${dif}" th:text="${dif}"></option>
+            </select>
+        </td>
+    </label>
+    <input type="submit" value="Save Question"/>
+</form>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+</body>
+</html>

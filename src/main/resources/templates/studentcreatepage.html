@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <table>
+        <tr th:each="student:${users}">
+            <td th:text="${student.name}"></td>
+            <td th:text="${student.userRoles}"></td>
+            <td>
+                <form th:action="@{/addstudentintogroup}" method="post">
+                    <select name="groupSelect">
+                        <option>Choose group</option>
+                        <option id="groupId" th:each="group:${groups}" th:text="${group.groupName}"></option>
+                    </select>
+                <input type="hidden" name="studentId" th:value="${student.id}">
+                <button type="submit">Add into group</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

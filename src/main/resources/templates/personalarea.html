@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Spring Boot Thymeleaf Application - Bootstrap Table</title>
+    <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+Имя Студента
+<p th:text="${userName}"></p>
+Группа учащегося
+<p th:text="${userGroup}"></p>
+Куратор
+
+Информация по тестам
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10 mt-5 mb-5">
+            <table id="questions" class="table table-bordered" style="width: 100%">
+                <tr th:each="userStats:${userStatList}">
+                    <td th:text="${userStats.test.testName}"></td>
+                    <td th:text="${userStats.test.studySubjectList.name}"></td>
+                    <td th:text="${userStats.userTestScore}"></td>
+                    <td th:text="${userStats.testStatus}" th:style="${userStats.testStatus} == 'Passed' ? 'background: green' : 'background: red'"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/create}" method="get">
+    <input type="hidden" th:value="${user}">
+    <button type="submit">Create page</button>
+</form>
+<form th:action="@{/tests}" method="get">
+    <button type="submit">Testing page</button>
+</form>
+<form th:action="@{/groupcreate}" method="post">
+    <input type="text" name="groupName"/>
+    <button type="submit">Save group</button>
+</form>
+</body>
+</html>

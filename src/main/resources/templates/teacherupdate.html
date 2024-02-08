@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Spring Boot Thymeleaf Application - Bootstrap Table</title>
+    <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10 mt-5 mb-5">
+            <table id="teacher" class="table table-bordered" style="width: 100%">
+                <tr>
+                    <form th:action="@{/teacherupdate/} + ${{user.id}}" method="post">
+                        <td>
+                            <input type="text" name="teacherName" th:value="${user.name}"/>
+                        </td>
+                        <td th:text="${user.studySubject}"></td>
+                        <td>
+                            <select name="subject">
+                                <option>Choose subject</option>
+                                <option th:each="sub:${subject}" th:text="${sub.name}"></option>
+                            </select>
+                        </td>
+                        <td>
+                            <button type="submit">Update teacher</button>
+                    </form>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+Группы под ответственностью Учителя
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10 mt-5 mb-5">
+            <table id="groupsInTeacher" class="table table-bordered" style="width: 100%">
+                <tr th:each="group:${teacherGroupList}">
+                    <td th:text="${group.groupName}"></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+Свободные группы
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10 mt-5 mb-5">
+            <table id="groups" class="table table-bordered" style="width: 100%">
+                <tr th:each="group:${groups}">
+                    <form th:action="@{/teacherupdategroup/} + ${{user.id}}" method="post">
+                        <input type="hidden" name = "groupId" th:value="${group.id}">
+                        <td th:text="${group.groupName}"></td>
+                        <td>
+                            <button type="submit">Add to teacher</button>
+                        </td>
+                    </form>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

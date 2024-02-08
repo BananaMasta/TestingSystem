@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>User Login</title>
+</head>
+<body>
+<form th:action="@{/registration}" th:object="${user}" method="POST">
+    <h1>Registration</h1>
+    <div class="container">
+        <table>
+            <tr>
+                <label> Name </label>
+                <input type="text" name="firstname" th:field="*{name}" placeholder="Name" size="15" required/>
+                <label> Password: </label>
+                <input type="text" name="password" th:field="*{password}" placeholder="Password" size="15" required/>
+                <label>Role</label>
+                <select name="userrole">
+                    <option th:each="roles : ${T(com.example.testingsystem.users.Roles).values()}"
+                            th:value="${roles}" th:text="${roles}"></option>
+                </select>
+            </tr>
+        </table>
+    </div>
+    <button type="submit">Registration</button>
+</form>
+</body>
+</html>

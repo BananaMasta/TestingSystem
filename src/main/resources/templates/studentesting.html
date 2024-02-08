@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Spring Boot Thymeleaf Application - Bootstrap Table</title>
+    <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+<form th:action="@{/studentesting/} + ${{testId}}" method="post">
+    <label th:text="${questionNumber} + 1"></label> / <label th:text="${questionSize}"></label>
+    <table>
+        <tr>
+            <td>
+                <label th:text="${questionName}"></label>
+            </td>
+            <td>
+                <input type="radio" id="1" name="answer" th:value="${questionAnswer1}">
+                <label for="1" th:text="${questionAnswer1}"/>
+            </td>
+            <td>
+                <input type="radio" id="2" name="answer" th:value="${questionAnswer2}">
+                <label for="1" th:text="${questionAnswer2}"/>
+            </td>
+            <td>
+                <input type="radio" id="3" name="answer" th:value="${questionAnswer3}">
+                <label for="1" th:text="${questionAnswer3}"/>
+            </td>
+            <td>
+                <input type="radio" id="4" name="answer" th:value="${questionAnswer4}">
+                <label for="1" th:text="${questionAnswer4}"/>
+            </td>
+            <input type="hidden" name="question1Id" th:value="${question1Id}"/>
+            <input type="hidden" name="questionNum" th:value="${questionNumber}">
+            <td>
+                <button type="submit">Next question</button>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
